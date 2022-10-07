@@ -3,7 +3,8 @@
 ## Installation
 N/A
 
-![](./Assets/images/Screenshot.png)
+![](./assets/images/Screenshot.png)
+
 [To visit my Daily planner Web Site]( https://ajilakj.github.io/DailyPlanner/)
 
 ## Description
