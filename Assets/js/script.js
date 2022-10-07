@@ -4,7 +4,6 @@ var today=moment().format(("LLLL") );
 $("#currentDay").text(today);
 var currentTime=Number(moment().format("hh"));
 var amPm=moment().format('A');
-var i;
 var containerForTime=document.querySelector("container");
 var divForTime=document.getElementsByClassName("time")
 var divTime=document.getElementsByClassName("time")
@@ -33,33 +32,30 @@ for(var i=1;i<25;i++){
      }
 }
 
+
 //EVENT LISTNER FOR BUTTONS
-var btnCollection = document. getElementsByClassName("saveBtn");
-
-for (var i = 0; i <btnCollection. length ; i++) {
-     btnCollection[i]. addEventListener("click", saveLocalStorage
-     );
-}    
-
-
-//TO STORE IN THE LOCAL STORAGE
-function saveLocalStorage(event){
+$(document).on('click','button', function(event){
      var parentDiv=$(event.target).parent();
-     console.log(parentDiv.val());
-     //var textContent=parentDiv.children(i).eq(1).text();
-     var textContent=parentDiv.children(i).eq(1).val();
-
+     var textContent=(parentDiv.children().eq(1)).val();
+     var time=Number($(event.target).parent()[0].id);
      var schedule={
-          index:i,
-          textContent:textContent
+          index:time,
+          Content:textContent,
      };
      localStorage.setItem("Schedule",JSON.stringify(schedule));
-}
+});
 
 
 // TO GET BACK FROM THE LOCAL STORAGE
 function init(){
      var storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
-     var i=storedSchedule.index;
-     textContent=storedSchedule.textContent;
+     var t=storedSchedule.index;
+     var text=storedSchedule.Content;
+     for(var i=1;i<25;i++){
+          if(t===i){
+               var idForDiv=Number(divForTime[i-1].id);
+               (divForTime[idForDiv]).children[1].textContent=text;
+          }
+     }
 }
+init();
