@@ -1,11 +1,15 @@
+// DEPENDENCIES
+
 var today=moment().format(("LLLL") );
 $("#currentDay").text(today);
 var currentTime=Number(moment().format("hh"));
 var amPm=moment().format('A');
-
+var i;
 var containerForTime=document.querySelector("container");
 var divForTime=document.getElementsByClassName("time")
 var divTime=document.getElementsByClassName("time")
+
+//CHECKING BASED ON THE CURRENT TIME THE SCEDULED ITEM IS PAST /PRESENT OR FUTURE
 for(var i=1;i<25;i++){
      // var textArea = document.createElement("p");
      // textArea.textContent="for "+i;
@@ -28,30 +32,34 @@ for(var i=1;i<25;i++){
           divTime[id-1].classList.add("future");
      }
 }
-//btnCollection. length
+
+//EVENT LISTNER FOR BUTTONS
 var btnCollection = document. getElementsByClassName("saveBtn");
+
 for (var i = 0; i <btnCollection. length ; i++) {
-     btnCollection[i]. addEventListener("click", function (event) {
+     btnCollection[i]. addEventListener("click", saveLocalStorage
+     );
+}    
+
+
+//TO STORE IN THE LOCAL STORAGE
+function saveLocalStorage(event){
      var parentDiv=$(event.target).parent();
+     console.log(parentDiv.val());
      //var textContent=parentDiv.children(i).eq(1).text();
      var textContent=parentDiv.children(i).eq(1).val();
-     console.log(textContent);
+
      var schedule={
           index:i,
           textContent:textContent
      };
      localStorage.setItem("Schedule",JSON.stringify(schedule));
-     });
 }
+
+
+// TO GET BACK FROM THE LOCAL STORAGE
 function init(){
      var storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
      var i=storedSchedule.index;
      textContent=storedSchedule.textContent;
-     // if (lastGrade !== null) {
-     //      document.getElementById("saved-name").innerHTML = lastGrade.student;
-     //      document.getElementById("saved-grade").innerHTML = lastGrade.grade;
-     //      document.getElementById("saved-comment").innerHTML = lastGrade.comment;
-     //      } else {
-     //        return;
-     //      }
 }
