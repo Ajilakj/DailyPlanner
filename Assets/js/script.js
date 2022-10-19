@@ -36,26 +36,55 @@ for(var i=1;i<25;i++){
 //EVENT LISTNER FOR BUTTONS
 $(document).on('click','button', function(event){
      var parentDiv=$(event.target).parent();
+     // console.dir(parentDiv);
      var textContent=(parentDiv.children().eq(1)).val();
      var time=Number($(event.target).parent()[0].id);
-     var schedule={
-          index:time,
-          Content:textContent,
-     };
+     // alert(time);
+     // alert(textContent);
+     var schedule=[
+          time,
+          textContent
+     ];
+     var retrieveArray = localStorage.getItem("Schedule");
+    var stored = JSON.parse(retrieveArray);
+if(stored!==null){
+     // stored.push(time);
+     // stored.push(textContent);
+     stored.push(schedule);
+//alert(stored);
+localStorage.setItem("Schedule",JSON.stringify(stored));}
+else{
      localStorage.setItem("Schedule",JSON.stringify(schedule));
+}
+     //let storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
+    // if(storedSchedule!==null){
+          //alert("inside if");
+          // storedSchedule.push(schedule);
+          // localStorage.setItem("Schedule",JSON.stringify(storedSchedule)); 
+    // }
+   //  else{
+          //alert("inside else");
+         // localStorage.setItem("Schedule",JSON.stringify(stored));
+   //  }
+    
 });
 
 
 // TO GET BACK FROM THE LOCAL STORAGE
-function init(){
-     var storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
-     var t=storedSchedule.index;
-     var text=storedSchedule.Content;
-     for(var i=1;i<25;i++){
-          if(t===i){
-               var idForDiv=Number(divForTime[i-1].id);
-               (divForTime[idForDiv]).children[1].textContent=text;
-          }
-     }
-}
-init();
+// function init(){
+//      let storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
+//      alert(storedSchedule.length);
+//      for(var j=0;j<storedSchedule.length;j++){
+
+//      }
+//      let time=storedSchedule.index;
+//      let text=storedSchedule.Content;
+//      for(let i=1;i<25;i++){
+//           if(time===i){
+//                var idForDiv=Number(divForTime[i-1].id);
+//                //alert(idForDiv);
+//                (divForTime[idForDiv-1]).children[1].textContent=text;
+//           }
+//      }
+// }
+// init();
