@@ -56,21 +56,18 @@ $(document).on('click','button', function(event){
 
 
 //TO GET BACK FROM THE LOCAL STORAGE
-// function init(){
-//      let storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
-//     //alert(storedSchedule.length);
-//      for(var j=0;j<storedSchedule.length;j++){
-//           alert(storedSchedule[0]);
-//          // for(let i=1;i<25;i++){
-//               // if(time===i){
-//                     // var idForDiv=Number(divForTime[i-1].id);
-//                     // //alert(idForDiv);
-//                     // (divForTime[idForDiv-1]).children[1].textContent=text;
-//              //  }
-//         //  }
-//      }
-//      // let time=storedSchedule.index;
-//      // let text=storedSchedule.Content;
+function init(){
+     let storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
+     for(var j=0;j<storedSchedule.length;j++){
+          let time=storedSchedule[j][0];
+          let text=storedSchedule[j][1];
+         for(let i=1;i<25;i++){
+              if(time===i){
+                    var idForDiv=Number(divForTime[i-1].id);
+                    (divForTime[idForDiv-1]).children[1].textContent=text;
+              }
+         }
+     }
     
-// }
-// init();
+}
+init();
