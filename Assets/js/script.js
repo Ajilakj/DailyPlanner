@@ -46,45 +46,31 @@ $(document).on('click','button', function(event){
           textContent
      ];
      var retrieveArray = localStorage.getItem("Schedule");
-    var stored = JSON.parse(retrieveArray);
-if(stored!==null){
-     // stored.push(time);
-     // stored.push(textContent);
+     var stored=[]
+     if(retrieveArray!==null){
+          stored = JSON.parse(retrieveArray);
+     }
      stored.push(schedule);
-//alert(stored);
-localStorage.setItem("Schedule",JSON.stringify(stored));}
-else{
-     localStorage.setItem("Schedule",JSON.stringify(schedule));
-}
-     //let storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
-    // if(storedSchedule!==null){
-          //alert("inside if");
-          // storedSchedule.push(schedule);
-          // localStorage.setItem("Schedule",JSON.stringify(storedSchedule)); 
-    // }
-   //  else{
-          //alert("inside else");
-         // localStorage.setItem("Schedule",JSON.stringify(stored));
-   //  }
-    
+     localStorage.setItem("Schedule",JSON.stringify(stored));
 });
 
 
-// TO GET BACK FROM THE LOCAL STORAGE
+//TO GET BACK FROM THE LOCAL STORAGE
 // function init(){
 //      let storedSchedule = JSON.parse(localStorage.getItem("Schedule"));
-//      alert(storedSchedule.length);
+//     //alert(storedSchedule.length);
 //      for(var j=0;j<storedSchedule.length;j++){
-
+//           alert(storedSchedule[0]);
+//          // for(let i=1;i<25;i++){
+//               // if(time===i){
+//                     // var idForDiv=Number(divForTime[i-1].id);
+//                     // //alert(idForDiv);
+//                     // (divForTime[idForDiv-1]).children[1].textContent=text;
+//              //  }
+//         //  }
 //      }
-//      let time=storedSchedule.index;
-//      let text=storedSchedule.Content;
-//      for(let i=1;i<25;i++){
-//           if(time===i){
-//                var idForDiv=Number(divForTime[i-1].id);
-//                //alert(idForDiv);
-//                (divForTime[idForDiv-1]).children[1].textContent=text;
-//           }
-//      }
+//      // let time=storedSchedule.index;
+//      // let text=storedSchedule.Content;
+    
 // }
 // init();
